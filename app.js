@@ -17,7 +17,7 @@
     //Mongoose
         //
     //Public
-    app.use(express.static(path.join(__dirname,"/public")))
+        app.use(express.static(path.join(__dirname,"/public")))
 //Rotas
     app.use('/admin', admin)
 
