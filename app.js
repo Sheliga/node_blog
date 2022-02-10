@@ -18,7 +18,7 @@
         mongoose.connect("mongodb://localhost/blogapp").then(()=>{
             console.log("conectado ao mongodb")
         }).catch((err)=>{
-            console.log("erro ao se conectar")
+            console.log("erro ao se conectar"+ err)
         })
     //Public
         app.use(express.static(path.join(__dirname,"/public")))
