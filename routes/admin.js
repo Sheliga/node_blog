@@ -30,7 +30,7 @@ router.post("/categorias/nova", (req, res)=>{
     if(!req.body.slug || typeof req.body.slug == undefined || req.body.slug == null){
         erros.push({text: "Slug inválido"})
     }
-    if(req.body.nome < 2 ){
+    if(req.body.nome > 2 ){
         erros.push({text: "Texto da categoria é muito pequeno."})
     }
     
@@ -57,6 +57,7 @@ router.post("/categorias/nova", (req, res)=>{
         }).catch((err)=>{
             req.flash("error_msg","Houve um erro ao salvar a categoria")
             console.log("erro ao salvar categoria: "+err)
+            res.redirect("/admin")
         })
         
     }
