@@ -4,30 +4,29 @@ const mongoose = require("mongoose")
 require("../models/Categoria")
 const Categoria = mongoose.model("categorias")
 
-router.get("/", (req, res)=>{
+router.get("/", (req, res) => {
     res.render("admin/index")
 })
 
-router.get("/posts", (req, res)=>{
+router.get("/posts", (req, res) => {
     res.send("Página de posts")
 })
 
-router.get("/categorias", (req, res)=>{
-    Categoria.find().sort({date:"desc"}).lean().then((categorias)=>{
-       
+router.get("/categorias", (req, res) => {
+    Categoria.find().sort({date:"desc"}).lean().then((categorias) => {
         res.render("admin/categorias", {categorias: categorias})
-    }).catch((err)=>{
+    }).catch((err) => {
         req.flash("error_msg", "Houve um erro ao listar as categorias")
         res.redirect("/admin")
     })
     
 })
 
-router.get("/categorias/add", (req, res)=>{
+router.get("/categorias/add", (req, res) => {
     res.render("admin/addcategorias")
 })
 
-router.post("/categorias/nova", (req, res)=>{
+router.post("/categorias/nova", (req, res) => {
 
     var erros = []
 
@@ -45,7 +44,7 @@ router.post("/categorias/nova", (req, res)=>{
          // Filtrando os dados antes de mandar para View
          console.log(erros)
          const context = {
-            errosContext: erros.map(erro => {
+            errosContext: erros.map(erro  =>  {
                 return {
                     text: erro.text
                 }
@@ -58,10 +57,10 @@ router.post("/categorias/nova", (req, res)=>{
             slug: req.body.slug,
     
         }
-        new Categoria(novaCategoria).save().then(()=>{
+        new Categoria(novaCategoria).save().then(() => {
             req.flash("success_msg","categoria criada com sucesso")
             res.redirect("/admin/categorias")
-        }).catch((err)=>{
+        }).catch((err) => {
             req.flash("error_msg","Houve um erro ao salvar a categoria")
             console.log("erro ao salvar categoria: "+err)
             res.redirect("/admin")
@@ -71,4 +70,7 @@ router.post("/categorias/nova", (req, res)=>{
   
 })
 
+router.get("/categorias/edit/:id", (req, res) => {
+    res.render("admin/editcategorias")
+})
 module.exports = router
