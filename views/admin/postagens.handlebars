@@ -4,9 +4,10 @@
 {{#each postagens}}
     <div class="card mt-4">
         <div class="card-body">
-            <h4>{{nome}}</h4>
-            <small>{{slug}}</small><br>
-            <small>Data de criação: {{date}}</small><br>
+            <h4>{{titulo}}</h4>
+            <p>Descrição{{descricao}}</p>
+            <small>Categoria:{{categoria.nome}}</small><br>
+            <small>Data: {{data}}</small><br>
             <a href="/admin/postagens/edit/{{_id}}"><button class="btn btn-success mt-4">Editar postagem</button></a>
             <form action="/admin/postagens/deletar" method="POST">
                 <input type="hidden" name="id" value="{{_id}}">
