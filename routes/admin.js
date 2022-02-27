@@ -208,7 +208,7 @@ router.post("/postagens/edit/", (req, res) =>{
 router.get("/postagens/deletar/:id", (req, res) =>  {
     //Forma menos segura do q a utilizada com formularios para remover 
     //categorias, está aqui como objeto de estudo pra saber q ela existe    
-    Postagem.remove({_id: req.params.id}).then(() => {
+    Postagem.deleteOne({_id: req.params.id}).then(() => {
         res.redirect("/admin/postagens")
     }) 
 })
