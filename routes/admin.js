@@ -177,4 +177,35 @@ router.get("/postagens/edit/:id", (req, res) =>  {
     })
     
 })
+
+router.post("/postagens/edit/", (req, res) =>{
+    erros = []
+
+    Postagem.findOne({_id:req.body.id}).then((postagem) => {
+        
+            postagem.titulo = req.body.titulo
+            postagem.descricao = req.body.descricao
+            postagem.conteudo = req.body.conteudo
+            postagem.categoria = req.body.categoria
+            postagem.slug = req.body.slug
+
+            postagem.save().then(() => {
+                req.flash("success_msg", "Postagem editada com sucesso")
+                res.redirect("/admin/postagens")
+            }).catch((err) => {
+                
+                req.flash("error_msg", "Erro intero")
+                res.redirect("/admin/postagens")
+            })
+        
+    }).catch((err) => {
+        console.log(err)
+        req.flash("error_msg", "Houve um erro ao salvar a edição")
+        res.redirect("/admin/postagens")
+    })
+    
+        
+    
+
+})
 module.exports = router
