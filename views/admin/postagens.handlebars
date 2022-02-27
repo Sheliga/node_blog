@@ -8,11 +8,9 @@
             <p>Descrição: {{descricao}}</p>
             <small>Categoria: {{categoria.nome}}</small><br>
             <small>Data: {{data}}</small><br>
-            <a href="/admin/postagens/edit/{{_id}}"><button class="btn btn-success mt-4">Editar postagem</button></a>
-            <form action="/admin/postagens/deletar" method="POST">
-                <input type="hidden" name="id" value="{{_id}}">
-                <button type="submit" class="btn btn-danger mt-2">Deletar postagem</button>
-            </form>
+            <a href="/admin/postagens/edit/{{_id}}"><button class="btn btn-success mt-4">Editar postagem</button></a> </br>
+            <a href="/admin/postagens/deletar/{{_id}}"><button type="submit" class="btn btn-danger mt-2">Deletar postagem</button></a>
+            
         </div>
     </div>
 {{else}}

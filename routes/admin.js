@@ -203,9 +203,14 @@ router.post("/postagens/edit/", (req, res) =>{
         req.flash("error_msg", "Houve um erro ao salvar a edição")
         res.redirect("/admin/postagens")
     })
-    
-        
-    
-
 })
+
+router.get("/postagens/deletar/:id", (req, res) =>  {
+    //Forma menos segura do q a utilizada com formularios para remover 
+    //categorias, está aqui como objeto de estudo pra saber q ela existe    
+    Postagem.remove({_id: req.params.id}).then(() => {
+        res.redirect("/admin/postagens")
+    }) 
+})
+
 module.exports = router
