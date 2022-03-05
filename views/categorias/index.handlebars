@@ -1,7 +1,9 @@
 <h4>Categorias</h4>
 <hr>
 {{#each categorias}}
-    <h5>{{nome}}</h5>
+    <a href="/categorias/{{slug}}">
+        <h5>{{nome}}</h5>
+    </a>
     <hr>
 {{else}}
 {{/each}}

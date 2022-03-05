@@ -80,6 +80,23 @@
         })
     })
 
+    app.get('/categorias/:slug', (req, res) => {
+        Categoria.findOne({slug:req.params.slug}).lean().then((categoria) =>{
+            if(categoria){
+                Postagem.find({categoria:categoria._id}).lean().then((postagens) => {
+                    res.render("categorias/postagens", {postagens:postagens, categoria:categoria})
+                })
+            }else{
+                req.flash("error_msg","Houve um erro interno ao listar as categorias")
+                res.redirect("/")
+            }
+        }).catch((err) => {
+            req.flash("error_msg",  "Esta categorias não existe")
+            res.redirect("/")
+        })
+    })
+    
+
     app.get('/404', (req, res) => {
         res.send('Erro 404!')
     })
