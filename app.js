@@ -14,7 +14,8 @@
     
     require("./models/Postagens")
     const Postagem = mongoose.model("postagens")
-
+    
+    const usuarios = require("./routes/usuario")
 
 
 
@@ -102,6 +103,7 @@
     })
     
     app.use('/admin', admin)
+    app.use('/usuarios', usuarios)
 
 //Outros
 const PORT = 8081
